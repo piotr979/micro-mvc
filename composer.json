@@ -1,0 +1,15 @@
+{
+    "name": "start/mvv",
+    "description": "n",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "Tests"
+        }
+    },
+    "require": {}
+}
