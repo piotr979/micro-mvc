@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Controllers\MainController;
 use App\Helpers\Dump;
 use App\Models\Request;
+use Closure;
 
 class Router
 {
@@ -27,20 +29,22 @@ class Router
 {
     echo "You wanted a $type haircut, no problem\n";
 }
-function demo($value)
-{
-    echo "This is $value site.\n";
-}
   
 
-    public function get($routePath, $params)
-    {
-
-        $this->routes['get'][$routePath] = $params;
-        call_user_func(__NAMESPACE__ . '\Router::demo', "GeeksforGeeks");
-
-        Dump::dump($this->routes);
-    }
+   public function setRoute($route, $fncName)
+   {
+  
+    $routing = trim($route, '/');
     
+    // to pass function as parameter conversion to callback is required
+    $callback = Closure::fromCallable([new MainController, $fncName]);
+    $this->routes[$routing] = $callback;
+   }
+
+    public function dispatch($action)
+    {
+        $callback = trim($action, '/');
+        echo call_user_func($this->routes[$callback]);
+    }
    
 }
