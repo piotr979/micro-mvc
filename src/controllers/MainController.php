@@ -9,16 +9,15 @@ class MainController extends AbstractController
 {
     function attachRoutes(Router $router)
     {
-        // $router->setRoute('/home', function() {
-        //     return $this->home();
-        // });
-
         $router->setRoute('/', 'home');
+        $router->setRoute('/form', 'form');
     }
-
-
     function home()
+    { 
+        return "index.php";
+    }
+    function form()
     {
-        return "Hello World";
+        return "form.php";
     }
 }

@@ -20,7 +20,6 @@ class App
     {
        
       // $this->router->resolve();
-
        $this->mainController->attachRoutes($this->router);
     }
 }
