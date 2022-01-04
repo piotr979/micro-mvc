@@ -9,8 +9,9 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Your name is <?php echo $number; ?> </p>
     <form method="POST" action="">
-        <input name="fullname" type="text">
+        <input name="fullname" type="text" value="<?php if ($number) { echo $number; } ?>">
         <button>Submit</button>
     </form>
 </body>

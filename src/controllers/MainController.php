@@ -11,13 +11,22 @@ class MainController extends AbstractController
     {
         $router->setRoute('/', 'home');
         $router->setRoute('/form', 'form');
+      //  $router->setRoute('/form/{id}', 'edit');
     }
     function home()
     { 
         return "index.php";
     }
-    function form()
+    function form($id = null)
     {
-        return "form.php";
+        echo $id;
+        $params = ["number" => "123"];
+        return ["view" => "form.php",
+             "params" => $params];
+    }
+    function edit(int $id)
+    {
+        echo "From edit";
+        echo $id;
     }
 }
