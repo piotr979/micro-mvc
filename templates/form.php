@@ -1,18 +1,23 @@
 <?php
+require 'components/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Your name is <?php echo $number; ?> </p>
+<div class="container-sm">
+<h3 class="text-center py-4">New task</h3>
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
     <form method="POST" action="">
-        <input name="fullname" type="text" value="<?php if ($number) { echo $number; } ?>">
-        <button>Submit</button>
+      
+    <div class="mb-3">
+    <label for="task" class="form-label">Task description</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"
+     aria-describedby="emailHelp" value="<?php if ($number) { echo $number; } ?>">
+  </div>      
+        <button class="btn btn-primary">Add task</button>
     </form>
-</body>
-</html>
+    </div>
+    </div>
+    </div>
+
+<?php
+require 'components/footer.php';
+?>

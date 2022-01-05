@@ -45,9 +45,8 @@ class Router
      */
     public function dispatch($route)
     {
-
         /*
-        * Dispatching submitted forms stars here. 
+        * Dispatching submitted forms. 
         * Depending on method and form will be redirected to given URL address
         */
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -56,16 +55,13 @@ class Router
                     BasicFormService::processForm($_POST);
             }
         }
-        /* Dispatching forms ends here */
-
-
         // Check against regex to find params in URL
         // like route/param or route/1234
+        // Code below processes URL params ONLY
         $results = preg_match('/\/(?<route>[a-z]*)\/(?<param>[a-zA-Z0-9]+)/', $route, $matches);
-
         // if URL contain param pass it on
         if (array_key_exists("param", $matches)) {
-            $callback =  call_user_func(
+            $callback = call_user_func(
                 $this->routes[$matches['route']],
                 $matches['param']
             );
@@ -73,8 +69,8 @@ class Router
             $routeStripped = trim($route, '/');
             $callback =  call_user_func($this->routes[$routeStripped]);
         }
-
-        // Dump::dump($callback);
+     //   Dump::dump($matches['param']);
+    Dump::dump($callback["params"]);
         if (is_string($callback)) {
             echo $this->view->renderView($callback);
         } else {

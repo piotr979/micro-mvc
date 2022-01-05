@@ -13,11 +13,11 @@ class Dump
         echo '</pre>';
         echo '</div>';
     } 
-    public static function echoArg($arg)
+    public static function printArg($arg)
     {
         echo "<div style='background-color: black; color: yellow'>";
         echo '<pre>';
-        echo $arg;
+        print_r($arg);
         echo '</pre>';
         echo '</div>';
     }

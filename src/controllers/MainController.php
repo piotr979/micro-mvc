@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\App;
 use App\Controllers\AbstractController;
+use App\Entity\Task;
 use App\Models\Router;
 
 class MainController extends AbstractController
@@ -15,18 +17,22 @@ class MainController extends AbstractController
     }
     function home()
     { 
-        return "index.php";
+       $tasks = [];
+        $query = App::$app->db->select("SELECT * FROM todo_mvc")->getAll();
+        foreach ($query as $item) {
+            $task = new Task();
+            $task->populateData($item);
+            var_dump($task);
+            $tasks[] = $task;
+        };
+     
+        return ["view" => 'index.php',
+            "params" => $tasks];
     }
     function form($id = null)
     {
-        echo $id;
         $params = ["number" => "123"];
         return ["view" => "form.php",
              "params" => $params];
-    }
-    function edit(int $id)
-    {
-        echo "From edit";
-        echo $id;
     }
 }
