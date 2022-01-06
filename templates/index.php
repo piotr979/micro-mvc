@@ -12,7 +12,7 @@ require 'components/header.php';
     </thead>
     <tbody>
 
-        <?php foreach ($params as $task) : ?>
+        <?php foreach ($data as $task) : ?>
             <tr>
                 <th scope="row">1</th>
                 <td><?= $task->getTaskText() ?></td>

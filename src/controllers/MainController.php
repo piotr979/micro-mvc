@@ -22,12 +22,11 @@ class MainController extends AbstractController
         foreach ($query as $item) {
             $task = new Task();
             $task->populateData($item);
-            var_dump($task);
             $tasks[] = $task;
         };
      
         return ["view" => 'index.php',
-            "params" => $tasks];
+            "data" => $tasks];
     }
     function form($id = null)
     {

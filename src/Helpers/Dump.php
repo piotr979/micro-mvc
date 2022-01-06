@@ -1,8 +1,8 @@
 <?php
 namespace App\Helpers;
-/* makes dumping easier to read
-*
-*/
+
+// makes dumping easier to read
+
 class Dump
 {
     public static function dump($arg)

@@ -69,12 +69,15 @@ class Router
             $routeStripped = trim($route, '/');
             $callback =  call_user_func($this->routes[$routeStripped]);
         }
-     //   Dump::dump($matches['param']);
-    Dump::dump($callback["params"]);
         if (is_string($callback)) {
             echo $this->view->renderView($callback);
         } else {
-            echo $this->view->renderView($callback['view'], $callback['params']);
+           
+           $callback['params'] = $callback['params'] ?? '';
+           $callback['data'] = $callback['data'] ?? '';
+           Dump::dump($callback['params']);
+            // TODO: Make params and data optional (with no need to pass empty arrays)
+            echo $this->view->renderView($callback['view'], $callback['params'], $callback['data']);
         }
     }
 }

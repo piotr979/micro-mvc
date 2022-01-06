@@ -13,6 +13,7 @@ class App
     public Router $router;
     public MainController $mainController;
     public PDOClient $db;
+    private string $env;
     public static App $app;
     public function __construct()
     {
@@ -20,11 +21,19 @@ class App
         $this->request = new Request();
         $this->router = new Router();
         $this->mainController = new MainController();
+        $this->env = APP_ENV;
         $this->db = new PDOClient(DB_DRIVER,DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     }
     public function run()
     {
+       set_error_handler([ new \App\Exception\ExceptionHandler, 'convertWarningsAndNoticesToExceptions']);
+       set_exception_handler([new \App\Exception\ExceptionHandler, 'handle']);
        $this->db->connect();
        $this->mainController->attachRoutes($this->router);
+    }
+    
+    public function isDebugMode(): bool
+    {
+        return APP_ENV == 'dev' ? true : false;
     }
 }

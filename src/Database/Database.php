@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Database;
 
 abstract class Database
@@ -14,20 +16,19 @@ abstract class Database
         $this->db_name = $db_name;
         $this->db_password = $db_password;
         $this->db_user = $db_user;
-        echo $this->db_name;
-        var_dump($this->db_user);
     }
     abstract public function connect();
-    
+     
     public function select($sql)
     {
-
         $this->statement = $this->connHandler->query('SELECT * FROM task');
         return $this;
     }
+
     public function getConn()
     {
         return $this->connHandler;
     }
+
     abstract public function getAll();
 }
