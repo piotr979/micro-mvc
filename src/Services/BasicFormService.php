@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Helpers\Dump;
-use App\Contracts\HandlingBasicFormInterface;
-class BasicFormService implements HandlingBasicFormInterface
+use App\Contracts\HandlingFormInterface;
+class BasicFormService implements HandlingFormInterface
 {
     public static function processForm($formData)
     {

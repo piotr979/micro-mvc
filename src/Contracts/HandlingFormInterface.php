@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface HandlingBasicFormInterface
+interface HandlingFormInterface
 {
     public static function processForm($formData);
 }

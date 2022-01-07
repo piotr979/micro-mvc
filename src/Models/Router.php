@@ -6,6 +6,7 @@ use App\Controllers\MainController;
 use App\Helpers\Dump;
 use App\Models\Request;
 use App\Services\BasicFormService;
+use App\Services\SecurityService;
 use App\Views\View;
 use Closure;
 
@@ -53,6 +54,8 @@ class Router
             switch ($route) {
                 case "/form":
                     BasicFormService::processForm($_POST);
+                case '/login':
+                    SecurityService::login($_POST);
             }
         }
         // Check against regex to find params in URL

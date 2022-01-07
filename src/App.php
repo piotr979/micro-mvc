@@ -5,7 +5,7 @@ namespace App;
 use App\Models\Request;
 use App\Models\Router;
 use App\Controllers\MainController;
-use App\Database\PDOClient;
+use App\Models\Database\PDOClient;
 
 class App 
 {
@@ -30,8 +30,9 @@ class App
        set_exception_handler([new \App\Exception\ExceptionHandler, 'handle']);
        $this->db->connect();
        $this->mainController->attachRoutes($this->router);
+       session_start();
     }
-    
+
     public function isDebugMode(): bool
     {
         return APP_ENV == 'dev' ? true : false;

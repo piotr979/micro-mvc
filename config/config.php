@@ -14,3 +14,4 @@ DEFINE('DB_USER', 'user');
 DEFINE('DB_PASSWORD','123456');
 
 DEFINE('APP_ENV', 'dev');
+DEFINE('USER_ROLE', ['user', 'admin']);

@@ -1,7 +1,7 @@
 <?php
-namespace App\Entity;
+namespace App\Models\Entity;
 
-use App\Entity\AbstractEntity;
+use App\Models\Entity\AbstractEntity;
 
 class Task extends AbstractEntity
 {

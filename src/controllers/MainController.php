@@ -4,15 +4,16 @@ namespace App\Controllers;
 
 use App\App;
 use App\Controllers\AbstractController;
-use App\Entity\Task;
+use App\Models\Entity\Task;
 use App\Models\Router;
-
+use App\Helpers\Dump;
 class MainController extends AbstractController
 {
     function attachRoutes(Router $router)
     {
         $router->setRoute('/', 'home');
         $router->setRoute('/form', 'form');
+        $router->setRoute('/login', 'login');
       //  $router->setRoute('/form/{id}', 'edit');
     }
     function home()
@@ -24,7 +25,6 @@ class MainController extends AbstractController
             $task->populateData($item);
             $tasks[] = $task;
         };
-     
         return ["view" => 'index.php',
             "data" => $tasks];
     }
@@ -33,5 +33,9 @@ class MainController extends AbstractController
         $params = ["number" => "123"];
         return ["view" => "form.php",
              "params" => $params];
+    }
+    function login()
+    {
+        return ["view" => "login.php"];
     }
 }

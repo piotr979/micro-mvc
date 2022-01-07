@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Database;
+namespace App\Models\Database;
 
-use App\Database\Database;
+use App\Models\Database\Database;
 use App\Exception\ConnectionException;
 use PDO;
 use PDOException;
@@ -14,7 +14,7 @@ class PDOClient extends Database
     public function __construct($driver, $host, $db_name, $db_user, $db_password)
     {
         parent::__construct($host, $db_name, $db_user, $db_password);
-        $this->dsn = "{$driver}:hjost={$this->host};dbname={$this->db_name};
+        $this->dsn = "{$driver}:host={$this->host};dbname={$this->db_name};
         charset=utf8";
     }
     public function connect()
