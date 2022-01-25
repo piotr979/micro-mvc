@@ -6,6 +6,7 @@ require 'components/header.php';
 <div class="container">
     <div class="row">
         <div class="col">
+            <a class="btn btn-secondary" href="/logout">Logout</a>
 <table class="table">
     <thead>
         <tr>
@@ -30,7 +31,10 @@ require 'components/header.php';
                     <?php endif; ?>
 
                 <td>
-                    <button class="delete-button btn btn-danger">Delete</a>
+                    <a href="/form/<?= $task->getId(); ?>" 
+                        class="delete-button btn btn-primary me-2">Edit</a>
+                    <a href="/delete/<?= $task->getId(); ?>" 
+                        class="delete-button btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>

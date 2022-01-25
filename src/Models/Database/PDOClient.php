@@ -20,7 +20,7 @@ class PDOClient extends Database
     public function connect()
     {
         try {
-            $this->connHandler = new PDO($this->dsn, $this->db_user, $this->db_password);
+            $this->connection = new PDO($this->dsn, $this->db_user, $this->db_password);
         } catch (\Throwable $e) {
             throw new ConnectionException("Connection error.", ['Could not connect'],2);
             exit;
@@ -31,5 +31,15 @@ class PDOClient extends Database
     public function getAll()
     {
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getUserByEmail(string $email)
+    {
+       $sql = "SELECT user.id, email, password, user_role.role FROM user
+       JOIN user_role ON user.role_id = user_role.id
+       WHERE email ='{$email}'
+       ";
+       $stmt = $this->connection->query($sql);
+       return $stmt->fetch(PDO::FETCH_OBJ);
+
     }
 }

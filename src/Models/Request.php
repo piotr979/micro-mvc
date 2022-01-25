@@ -14,6 +14,5 @@ class Request
             echo "test";
         }
        $urlString = trim($urlString);
-       Dump::dump($urlString);
         }
 }

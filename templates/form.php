@@ -11,10 +11,10 @@ require 'components/header.php';
                     <label for="task" class="form-label">Task description</label>
                     <input type="text" class="form-control" 
                     id="exampleInputEmail1" aria-describedby="emailHelp"
-                     value="<?php if ($params["number"]) {
-                      echo $params["number"]; } ?>">
+                     value="<?php if ($params["content"]) {
+                      echo $params['content']; } ?>">
                 </div>
-                <button class="btn btn-primary">Add task</button>
+                <button class="btn btn-primary">Save task</button>
             </form>
         </div>
     </div>

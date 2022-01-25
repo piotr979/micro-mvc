@@ -14,7 +14,7 @@ class ExceptionHandler
     public function handle(\Throwable $exception): void
     {
       if (App::$app->isDebugMode()) {
-        Dump::dump($exception);
+        Dump::printArg($exception);
       } else {
           echo "Exception occurred. Please try again (connection error)?";
       }

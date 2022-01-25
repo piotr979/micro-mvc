@@ -6,7 +6,7 @@ namespace App\Models\Database;
 
 abstract class Database
 {
-    protected $connHandler;
+    protected $connection;
     protected $statement;
     protected $host, $db_name, $db_user, $db_password;
 
@@ -21,13 +21,12 @@ abstract class Database
      
     public function select($sql)
     {
-        $this->statement = $this->connHandler->query('SELECT * FROM task');
+        $this->statement = $this->connection->query($sql);
         return $this;
     }
-
     public function getConn()
     {
-        return $this->connHandler;
+        return $this->connection;
     }
 
     abstract public function getAll();

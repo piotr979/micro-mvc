@@ -6,7 +6,7 @@ use App\Controllers\MainController;
 use App\Helpers\Dump;
 use App\Models\Request;
 use App\Services\BasicFormService;
-use App\Services\SecurityService;
+use App\Models\Authorisation;
 use App\Views\View;
 use Closure;
 
@@ -55,7 +55,7 @@ class Router
                 case "/form":
                     BasicFormService::processForm($_POST);
                 case '/login':
-                    SecurityService::login($_POST);
+                    Authorisation::login($_POST);
             }
         }
         // Check against regex to find params in URL
@@ -78,9 +78,10 @@ class Router
            
            $callback['params'] = $callback['params'] ?? '';
            $callback['data'] = $callback['data'] ?? '';
-           Dump::dump($callback['params']);
             // TODO: Make params and data optional (with no need to pass empty arrays)
+            if (isset($callback['view'])) {
             echo $this->view->renderView($callback['view'], $callback['params'], $callback['data']);
+            }
         }
     }
 }

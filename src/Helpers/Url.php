@@ -1,8 +1,8 @@
-<?php
+<?php 
 
 declare(strict_types = 1);
 
-namespace App\Url;
+namespace App\Helpers;
 
 class Url
 {
@@ -14,6 +14,13 @@ class Url
         {
             $protocol = 'http';
         }
-        header("Location: $protocol://" . $_SERVER['HTTP_HOST']. $url);
+      
+       // For production
+       
+      // header("Location: $protocol/" . $_SERVER['HTTP_HOST']. $url );
+
+       // For localhost
+     header('Location: ' . $url);
+        
     }
 }
