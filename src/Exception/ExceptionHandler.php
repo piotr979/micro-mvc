@@ -22,6 +22,6 @@ class ExceptionHandler
 
     public function convertWarningsAndNoticesToExceptions($severity, $message, $file, $line)
     {
-        throw new ErrorException($message, $severity, $file, $line);
+        throw new ErrorException($message,0, $severity, $file, $line);
     }
 }

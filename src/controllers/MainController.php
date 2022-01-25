@@ -19,6 +19,7 @@ class MainController extends AbstractController
         $router->setRoute('/login', 'login');
         $router->setRoute('/logout', 'logout');
         $router->setRoute('/tasklist', 'tasklist');
+        $router->setRoute('/delete', 'delete');
       //  $router->setRoute('/form/{id}', 'edit');
     }
     function home()
@@ -39,11 +40,11 @@ class MainController extends AbstractController
     }
     function form($id = null)
     {
-        $params = ["content" => ""];
+        $params = ["id" => '', "content" => ""];
         if ($id) {
             $query = App::$app->db->select("SELECT * FROM task WHERE id = {$id}")->getAll();
          
-            $params = ["content" => $query[0]['task']];
+            $params = ["id" => $id, "content" => $query[0]['task']];
         }
         return ["view" => "form.php",
              "params" => $params];
@@ -51,8 +52,7 @@ class MainController extends AbstractController
     function delete($id)
     {
         if ($id) {
-            // TODO: DElete here
-            // Redirect to main page
+            App::$app->db->deleteTask($id);
         }
     }
     function login()

@@ -51,11 +51,14 @@ class Router
         * Depending on method and form will be redirected to given URL address
         */
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+           // SAVE AGAIN NIE DZIALA BO $route jest tylko /form
             switch ($route) {
-                case "/form":
+                case str_starts_with($route, "/form"):
                     BasicFormService::processForm($_POST);
+                    break;
                 case '/login':
                     Authorisation::login($_POST);
+                    break;
             }
         }
         // Check against regex to find params in URL

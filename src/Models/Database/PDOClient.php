@@ -4,8 +4,11 @@ namespace App\Models\Database;
 
 use App\Models\Database\Database;
 use App\Exception\ConnectionException;
+use App\Models\Entity\Task;
+use App\Helpers\Url;
 use PDO;
 use PDOException;
+
 
 class PDOClient extends Database
 {
@@ -40,6 +43,31 @@ class PDOClient extends Database
        ";
        $stmt = $this->connection->query($sql);
        return $stmt->fetch(PDO::FETCH_OBJ);
-
     }
+   public function taskProcess(Task $task)
+   {
+  
+    if ($task->getId() == null) {
+        $sql = "INSERT INTO task (task) VALUES (:content)";
+        $stmt = $this->getConn()->prepare($sql);
+        $stmt->bindValue(':content', $task->getTaskText());
+        $stmt->execute();
+    } else {
+     
+        $sql = "UPDATE task SET task = :content WHERE id = :id";
+        $stmt = $this->getConn()->prepare($sql);
+        $stmt->bindValue(':content', $task->getTaskText(), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $task->getId(), PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    Url::redirect('/');
+   }
+   public function deleteTask($id)
+   {
+       $sql = "DELETE FROM task WHERE id = :id";
+       $stmt = $this->getConn()->prepare($sql);
+       $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+       $stmt->execute();
+       Url::redirect('/');
+   }
 }

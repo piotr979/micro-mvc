@@ -15,7 +15,7 @@ class Dump
     } 
     public static function printArg($arg)
     {
-        echo "<div style='background-color: black; color: yellow'>";
+        echo "<div style='background-color: black; color: yellow; font-size: 1.2rem;'>";
         echo '<pre>';
         print_r($arg);
         echo '</pre>';

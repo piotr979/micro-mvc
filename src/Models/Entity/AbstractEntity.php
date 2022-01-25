@@ -3,7 +3,7 @@ namespace App\Models\Entity;
 
 abstract class AbstractEntity
 {
-    protected int $id;
+    protected ?int $id = null;
 
     public function setId($id)
     {
