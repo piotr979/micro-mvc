@@ -5,8 +5,11 @@ require 'components/header.php';
 ?>
 <div class="container">
     <div class="row">
-        <div class="col">
+            <div class="my-4">
             <a class="btn btn-secondary" href="/logout">Logout</a>
+            </div>
+</div>
+<div class="row">
 <table class="table">
     <thead>
         <tr>
@@ -42,7 +45,7 @@ require 'components/header.php';
     </tbody>
 </table>
 </div>
-</div>
+
 <div class="row">
     <div class="col">
         <div class="text-center">

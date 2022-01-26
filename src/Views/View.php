@@ -20,7 +20,7 @@ class View
             ob_start();
             $params = $params;
             $data = $data;
-            include_once ROOT_DIR . "/templates/{$view}";
+            include ROOT_DIR . "/templates/{$view}";
             return ob_get_clean();
         }
         private function prepareForTemplate($data)

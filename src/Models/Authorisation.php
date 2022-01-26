@@ -4,13 +4,28 @@ namespace App\Models;
 
 use App\App;
 use App\Helpers\Dump;
+use App\Helpers\Url;
 
 class Authorisation
 {
+    public static bool $emailError = false;
+    public static bool $passwordError = false;
+    public static bool $wrongCredentials = false;
     public static function login($formData)
     {
-        $email = $formData['email'];
+        
+        $email = trim($formData['email']);
         $password = $formData['password'];
+
+            if (empty($email) || (!filter_var($email, FILTER_VALIDATE_EMAIL))) {
+                self::$emailError = true;
+                return;
+            }
+
+        if ($password == '') {
+            self::$passwordError = true;
+            return;
+        }
         $DBUser = App::$app->db->getUserByEmail($email);
         if ($DBUser) {
            if ($DBUser->email == $email && $DBUser->password == $password)
@@ -20,7 +35,9 @@ class Authorisation
           $_SESSION['is_logged_in_as'] = "USER";
          header("Location: /");
         } else {
-            echo "Wrong user";
+            self::$wrongCredentials = true;
+           // self::$passwordError = true;
+           // App::$app->router->callRoute('login', 'login', ['errors' => ['errorTest', 'error2']]);
         }
        
     }
@@ -56,5 +73,6 @@ class Authorisation
     {
         return isset($_SESSION['is_logged_in_as']) && $_SESSION['is_logged_in_as'];
     }
+   
 
 }

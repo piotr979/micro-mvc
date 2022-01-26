@@ -55,9 +55,12 @@ class MainController extends AbstractController
             App::$app->db->deleteTask($id);
         }
     }
-    function login()
+    function login($errors = [])
     {
-        return ["view" => "login.php"];
+        $params = [ 'errors' => $errors];
+        return ["view" => "login.php", 
+            "params" => $params
+    ];
     }
     function logout()
     {
@@ -67,5 +70,11 @@ class MainController extends AbstractController
     function tasklist()
     {
         return ["view" => "tasklist.php"];
+    }
+    function contrTest($params = [])
+    {
+        return ["view" => "login.php", 
+            "params" => $params
+        ];
     }
 }

@@ -14,7 +14,7 @@ class Router
 {
     protected array $routes = [];
     public Request $request;
-    private View $view;
+    public View $view;
 
     public function __construct()
     {
@@ -31,7 +31,14 @@ class Router
      * @param $route string Route link like '/main'
      * @param $fncName string function name
      */
-
+    public function callRoute($route, $call, $params = [])
+    {
+        $callback = Closure::fromCallable([new MainController, 'contrTest']);
+        $returnCallback = call_user_func($callback, $params);
+        ob_get_clean();
+        echo $this->view->renderView($returnCallback['view'], $returnCallback['params']);
+        
+    }
     public function setRoute($route, $call)
     {
 
