@@ -1,7 +1,9 @@
 <?php
 
 require 'components/header.php';
-
+function php_func() {
+    echo "test";
+}
 ?>
 <div class="container">
     <div class="row">
@@ -26,11 +28,11 @@ require 'components/header.php';
                 <th scope="row"><?= $task->getId(); ?></th>
                 <td><?= $task->getTaskText() ?></td>
                 <td>
-                <?php if ($task->getIsDone() ): ?>
+                <?php if ($task->getIsDone() == '1'): ?>
                     <input class="done-input" type="checkbox" checked=checked>
                 </td>
                 <?php else: ?>
-                    <input class="done-input" type="checkbox" checked=checked>
+                    <input class="done-input" type="checkbox">
                     <?php endif; ?>
 
                 <td>

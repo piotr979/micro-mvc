@@ -5,8 +5,23 @@ doneInputs.forEach( singleInput => {
     singleInput.addEventListener('click', function(e) {
        const checkboxStatus = e.target.checked;
        const targetId = e.target.parentElement.parentElement.dataset.id;
-       
-       // TODO: pass to php to save to database 
+
+    
+       let response = fetch("updateTaskDone.php", {
+           method: "POST",
+           headers: {
+               'content-type': 'application/json'
+           },
+           body: JSON.stringify( {
+               id: targetId,
+               checkboxStatus: checkboxStatus
+           })
+           }).then(( response ) => {
+               return response.text();
+               
+           }).then( (text) => {
+               console.log(text);
+           })
     });
 });
 

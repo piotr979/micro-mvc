@@ -70,4 +70,13 @@ class PDOClient extends Database
        $stmt->execute();
        Url::redirect('/');
    }
+   public function setTaskDone(int $id, bool $isTaskDone)
+   {
+      
+       $sql = "UPDATE task SET isDone = :isTaskDone WHERE id = :id";
+       $stmt = $this->getConn()->prepare($sql);
+       $stmt->bindValue(':isTaskDone', $isTaskDone, PDO::PARAM_BOOL);
+       $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+       $stmt->execute();
+   }
 }

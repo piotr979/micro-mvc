@@ -71,10 +71,4 @@ class MainController extends AbstractController
     {
         return ["view" => "tasklist.php"];
     }
-    function contrTest($params = [])
-    {
-        return ["view" => "login.php", 
-            "params" => $params
-        ];
-    }
 }
